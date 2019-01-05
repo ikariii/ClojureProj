@@ -139,7 +139,7 @@
     (.visitInsn Opcodes/IDIV)))
 (defmethod generate-instr :modi [mv [instr & args]]
   (doto mv
-    (.visitInsn Opcodes/IMUL)))
+    (.visitInsn Opcodes/IREM)))
 (defmethod generate-instr :addi [mv [instr & args]]
   (doto mv
     (.visitInsn Opcodes/IADD)))
@@ -191,4 +191,4 @@
     (->> ast args->varnum (to-numeric-vars n-args) compiler)))
 
 (def lang1-compiler-test (->> "a=%0;b=%1;a mod b;" lang1-parser (lang1-compiler-chain "Lang1Compiler")))
-(lang1-compiler-test 5 3)
+(lang1-compiler-test 100 27)
